@@ -1,0 +1,360 @@
+25-03-15.18:56:49.308 [main            ] INFO  Application            - Starting Application using Java 17.0.11 on DESKTOP-35155M7 with PID 26968 (D:\Huawei\BugSource\BugSource-app\target\classes started by Enthusi4sm in D:\Huawei\BugSource)
+25-03-15.18:56:49.309 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-03-15.18:56:49.665 [main            ] WARN  ClassPathMapperScanner - No MyBatis mapper was found in '[org.huawei.com]' package. Please check your configuration.
+25-03-15.18:56:49.877 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-03-15.18:56:49.884 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-03-15.18:56:49.884 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-03-15.18:56:49.884 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-03-15.18:56:49.941 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-03-15.18:56:49.941 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 608 ms
+25-03-15.18:56:50.233 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-03-15.18:56:50.242 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+25-03-15.18:56:50.250 [main            ] INFO  Application            - Started Application in 1.231 seconds (JVM running for 1.665)
+25-03-15.20:25:54.736 [main            ] INFO  Application            - Starting Application using Java 17.0.11 on DESKTOP-35155M7 with PID 21288 (D:\Huawei\BugSource\BugSource-app\target\classes started by Enthusi4sm in D:\Huawei\BugSource)
+25-03-15.20:25:54.738 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-03-15.20:25:55.254 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-03-15.20:25:55.259 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-03-15.20:25:55.259 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-03-15.20:25:55.259 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-03-15.20:25:55.312 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-03-15.20:25:55.313 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 549 ms
+25-03-15.20:25:55.668 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-03-15.20:25:55.678 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+25-03-15.20:25:55.685 [main            ] INFO  Application            - Started Application in 1.222 seconds (JVM running for 1.595)
+25-03-15.20:26:32.988 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+25-03-15.20:26:32.988 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+25-03-15.20:26:32.989 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 1 ms
+25-03-15.20:26:33.133 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-03-15.20:26:33.479 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-03-15.20:26:33.588 [http-nio-8091-exec-1] ERROR VulnerabilityRepository - 分页查询失败：offset=10, limit=10, 错误信息：
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10, 10' at line 2
+### The error may exist in file [D:\Huawei\BugSource\BugSource-app\target\classes\mybatis\mapper\vulnerability_mapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from vulnerability order by pub_date;  LIMIT ?, ?
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10, 10' at line 2
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10, 10' at line 2
+org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10, 10' at line 2
+### The error may exist in file [D:\Huawei\BugSource\BugSource-app\target\classes\mybatis\mapper\vulnerability_mapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select * from vulnerability order by pub_date;  LIMIT ?, ?
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10, 10' at line 2
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10, 10' at line 2
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:239)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:91)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
+	at jdk.proxy2/jdk.proxy2.$Proxy68.selectList(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152)
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy69.queryLatestVuln(Unknown Source)
+	at org.huawei.com.infrastructure.adapter.repository.VulnerabilityRepository.queryLatestVuln(VulnerabilityRepository.java:28)
+	at org.huawei.com.infrastructure.adapter.repository.VulnerabilityRepository$$FastClassBySpringCGLIB$$f356f722.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.huawei.com.infrastructure.adapter.repository.VulnerabilityRepository$$EnhancerBySpringCGLIB$$fd3c6108.queryLatestVuln(<generated>)
+	at org.huawei.com.domain.vulnerability.service.VulnerabilityService.queryLatestVuln(VulnerabilityService.java:19)
+	at org.huawei.com.trigger.http.VunerabilityController.queryLatestInfo(VunerabilityController.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:529)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10, 10' at line 2
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:325)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	at com.github.pagehelper.util.ExecutorUtil.pageQuery(ExecutorUtil.java:215)
+	at com.github.pagehelper.PageInterceptor.intercept(PageInterceptor.java:147)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+	at jdk.proxy2/jdk.proxy2.$Proxy80.query(Unknown Source)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+	... 70 common frames omitted
+25-03-15.20:26:33.597 [http-nio-8091-exec-1] ERROR [dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.huawei.com.api.types.exception.XApiException{code='参数错误', info='null'}] with root cause
+org.huawei.com.types.exception.AppException: null
+	at org.huawei.com.infrastructure.adapter.repository.VulnerabilityRepository.queryLatestVuln(VulnerabilityRepository.java:35)
+	at org.huawei.com.infrastructure.adapter.repository.VulnerabilityRepository$$FastClassBySpringCGLIB$$f356f722.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:793)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at org.huawei.com.infrastructure.adapter.repository.VulnerabilityRepository$$EnhancerBySpringCGLIB$$fd3c6108.queryLatestVuln(<generated>)
+	at org.huawei.com.domain.vulnerability.service.VulnerabilityService.queryLatestVuln(VulnerabilityService.java:19)
+	at org.huawei.com.trigger.http.VunerabilityController.queryLatestInfo(VunerabilityController.java:30)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1072)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:965)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:529)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:623)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:209)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:926)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1791)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+25-03-15.22:33:49.686 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-03-15.22:33:49.695 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-03-15.22:49:28.550 [main            ] INFO  Application            - Starting Application using Java 17.0.11 on DESKTOP-35155M7 with PID 30432 (D:\Huawei\BugSource\BugSource-app\target\classes started by Enthusi4sm in D:\Huawei\BugSource)
+25-03-15.22:49:28.551 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-03-15.22:49:29.099 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-03-15.22:49:29.104 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-03-15.22:49:29.104 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-03-15.22:49:29.104 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-03-15.22:49:29.160 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-03-15.22:49:29.160 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 584 ms
+25-03-15.22:49:29.479 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-03-15.22:49:29.490 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+25-03-15.22:49:29.496 [main            ] INFO  Application            - Started Application in 1.204 seconds (JVM running for 1.479)
+25-03-15.22:49:31.063 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+25-03-15.22:49:31.063 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+25-03-15.22:49:31.063 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 0 ms
+25-03-15.22:49:31.131 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-03-15.22:49:31.273 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-03-15.22:49:31.314 [http-nio-8091-exec-1] INFO  VulnerabilityRepository - 分页信息：当前页=1, 每页大小=10, 总记录数=10, 总页数=1
+25-03-15.22:50:32.152 [http-nio-8091-exec-3] INFO  VulnerabilityRepository - 分页信息：当前页=1, 每页大小=10, 总记录数=10, 总页数=1
+25-03-15.22:51:06.933 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-03-15.22:51:06.942 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-03-15.22:51:09.606 [main            ] INFO  Application            - Starting Application using Java 17.0.11 on DESKTOP-35155M7 with PID 40176 (D:\Huawei\BugSource\BugSource-app\target\classes started by Enthusi4sm in D:\Huawei\BugSource)
+25-03-15.22:51:09.608 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-03-15.22:51:10.139 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-03-15.22:51:10.145 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-03-15.22:51:10.145 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-03-15.22:51:10.145 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-03-15.22:51:10.202 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-03-15.22:51:10.203 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 570 ms
+25-03-15.22:51:10.536 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-03-15.22:51:10.546 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+25-03-15.22:51:10.553 [main            ] INFO  Application            - Started Application in 1.207 seconds (JVM running for 1.49)
+25-03-15.22:51:10.753 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+25-03-15.22:51:10.753 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+25-03-15.22:51:10.754 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 1 ms
+25-03-15.22:51:10.816 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-03-15.22:51:10.962 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-03-15.22:51:11.000 [http-nio-8091-exec-1] INFO  VulnerabilityRepository - 分页信息：当前页=1, 每页大小=10, 总记录数=10, 总页数=1
+25-03-15.22:51:11.072 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":26690}
+25-03-15.22:51:11.079 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":26690}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":26689}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":26689}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3270}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3270}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3269}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3269}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3268}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3268}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3267}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3267}
+25-03-15.22:51:11.080 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3266}
+25-03-15.22:51:11.081 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3266}
+25-03-15.22:51:11.081 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3265}
+25-03-15.22:51:11.081 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3265}
+25-03-15.22:51:11.081 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3264}
+25-03-15.22:51:11.081 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3264}
+25-03-15.22:51:11.081 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3263}
+25-03-15.22:51:11.082 [http-nio-8091-exec-1] INFO  VunerabilityController - {"id":3263}
+25-03-15.22:52:36.950 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-03-15.22:52:36.960 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-03-15.22:52:40.751 [main            ] INFO  Application            - Starting Application using Java 17.0.11 on DESKTOP-35155M7 with PID 41440 (D:\Huawei\BugSource\BugSource-app\target\classes started by Enthusi4sm in D:\Huawei\BugSource)
+25-03-15.22:52:40.753 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-03-15.22:52:41.268 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-03-15.22:52:41.274 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-03-15.22:52:41.274 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-03-15.22:52:41.275 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-03-15.22:52:41.331 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-03-15.22:52:41.331 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 551 ms
+25-03-15.22:52:41.655 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-03-15.22:52:41.665 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+25-03-15.22:52:41.671 [main            ] INFO  Application            - Started Application in 1.181 seconds (JVM running for 1.471)
+25-03-15.22:52:41.863 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+25-03-15.22:52:41.863 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+25-03-15.22:52:41.864 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 1 ms
+25-03-15.22:52:41.928 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-03-15.22:52:42.070 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-03-15.22:52:42.109 [http-nio-8091-exec-1] INFO  VulnerabilityRepository - 分页信息：当前页=1, 每页大小=10, 总记录数=10, 总页数=1
+25-03-15.22:55:04.371 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-03-15.22:55:04.380 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-03-15.22:55:06.634 [main            ] INFO  Application            - Starting Application using Java 17.0.11 on DESKTOP-35155M7 with PID 25660 (D:\Huawei\BugSource\BugSource-app\target\classes started by Enthusi4sm in D:\Huawei\BugSource)
+25-03-15.22:55:06.636 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-03-15.22:55:07.170 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-03-15.22:55:07.175 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-03-15.22:55:07.176 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-03-15.22:55:07.176 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-03-15.22:55:07.234 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-03-15.22:55:07.234 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 572 ms
+25-03-15.22:55:07.552 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-03-15.22:55:07.562 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+25-03-15.22:55:07.568 [main            ] INFO  Application            - Started Application in 1.19 seconds (JVM running for 1.506)
+25-03-15.22:55:08.264 [http-nio-8091-exec-2] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+25-03-15.22:55:08.264 [http-nio-8091-exec-2] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+25-03-15.22:55:08.264 [http-nio-8091-exec-2] INFO  DispatcherServlet      - Completed initialization in 0 ms
+25-03-15.22:55:08.343 [http-nio-8091-exec-2] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-03-15.22:55:08.481 [http-nio-8091-exec-2] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-03-15.22:55:08.586 [http-nio-8091-exec-2] INFO  VulnerabilityRepository - [{"cnDescribe":"IBM Cognos Analytics是美国国际商业机器（IBM）公司的一套商业智能软件。该软件包括报表、仪表板和记分卡等，并可通过分析关键因素与关键人等内容，协助企业调整决策。IBM Cognos Analytics存在输入验证错误漏洞，该漏洞源于存在不当的输入验证错误，远程攻击者可利用该漏洞进行网络钓鱼攻击。","cnImpact":"IBM IBM Cognos Analytics >=11.2.0，<=11.2.4 FP4   ;   IBM IBM Cognos Analytics >=12.0.0，<=12.0.3   ;   ","cnPatch":"IBM Cognos Analytics输入验证错误漏洞（CNVD-2025-0030733）的补丁:http://www.cnvd.org.cn/patchInfo/show/647201","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-45082","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://www.ibm.com/support/pages/node/7177223","cnTitle":"IBM Cognos Analytics输入验证错误漏洞（CNVD-2025-0030733）","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00307","cveId":"CVE-2024-45082","hazardLevel":"中","id":26690,"pubDate":1736265600000},{"cnDescribe":"IBM Cognos Analytics是美国国际商业机器（IBM）公司的一套商业智能软件。该软件包括报表、仪表板和记分卡等，并可通过分析关键因素与关键人等内容，协助企业调整决策。IBM Cognos Analytics存在跨站脚本漏洞，该漏洞源于列标题验证不正确，远程攻击者可利用该漏洞会执行恶意命令。","cnImpact":"IBM IBM Cognos Analytics >=12.0.0，<=12.0.3   ;   IBM IBM Cognos Analytics >=11.2.0，<=11.2.4 FP3   ;   ","cnPatch":"IBM Cognos Analytics跨站脚本漏洞（CNVD-2025-0030634）的补丁:http://www.cnvd.org.cn/patchInfo/show/647196","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-25042","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://www.ibm.com/support/pages/node/7173592","cnTitle":"IBM Cognos Analytics跨站脚本漏洞（CNVD-2025-0030634）","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00306","cveId":"CVE-2024-25042","hazardLevel":"中","id":26689,"pubDate":1736265600000},{"cnDescribe":"Fortinet FortiSwitchManager是美国飞塔（Fortinet）公司的一款网络交换机管理工具，旨在帮助组织管理其 FortiSwitch 系列网络交换机。Fortinet FortiSwitchManager存在访问控制不当漏洞。该漏洞是由于认证页面存在缺陷，无认证，安全配置不当导致的，攻击者可利用该漏洞可以通过API修改接口设置，获取敏感信息。","cnImpact":"Fortinet FortiSwitchManager 7.2.0   ;   Fortinet FortiSwitchManager 7.0.0   ;   Fortinet FortiSwitchManager 7.2.1   ;   Fortinet FortiSwitchManager 7.0.1   ;   Fortinet FortiSwitchManager 7.2.2   ;   ","cnPatch":"Fortinet FortiSwitchManager访问控制不当漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649871","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2023-36635","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新:https://fortiguard.com/psirt/FG-IR-22-174","cnTitle":"Fortinet FortiSwitchManager访问控制不当漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00416","cveId":"CVE-2023-36635","hazardLevel":"中","id":3270,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiWLM是美国飞塔（Fortinet）公司的一个无线管理器。Fortinet FortiWLM存在路径遍历漏洞，该漏洞源于程序未能正确地过滤资源或文件路径中的特殊元素。攻击者可利用该漏洞通过精心设计的http请求读取任意文件。","cnImpact":"Fortinet FortiWLM 8.6.1   ;   Fortinet FortiWLM 8.2.2   ;   Fortinet FortiWLM 8.6.5   ;   Fortinet FortiWLM 8.6.4   ;   Fortinet FortiWLM 8.6.3   ;   Fortinet FortiWLM 8.6.2   ;   Fortinet FortiWLM 8.6.0   ;   Fortinet FortiWLM 8.5.4   ;   Fortinet FortiWLM 8.5.3   ;   Fortinet FortiWLM 8.5.2   ;   Fortinet FortiWLM 8.5.1   ;   Fortinet FortiWLM 8.5.0   ;   Fortinet FortiWLM 8.6.6   ;   Fortinet FortiWLM 8.4.2   ;   Fortinet FortiWLM 8.4.1   ;   Fortinet FortiWLM 8.4.0   ;   Fortinet FortiWLM 8.3.2   ;   Fortinet FortiWLM 8.3.1   ;   Fortinet FortiWLM 8.3.0   ;   ","cnPatch":"Fortinet FortiWLM路径遍历漏洞（CNVD-2025-00417）的补丁:http://www.cnvd.org.cn/patchInfo/show/649876","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2023-42783","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.com/psirt/FG-IR-23-143","cnTitle":"Fortinet FortiWLM路径遍历漏洞（CNVD-2025-00417）","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00417","cveId":"CVE-2023-42783","hazardLevel":"高","id":3269,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiSOAR是美国飞塔（Fortinet）公司的一种安全编排、自动化和响应(SOAR) 解决方案。Fortinet FortiSOAR 7.2.0和7.0.3之前版本存在SQL注入漏洞，该漏洞源于对SQL命令中使用的特殊元素的不当中和，经过身份验证的攻击者可利用该漏洞通过特制的字符串参数执行未经授权的代码或命令。","cnImpact":"Fortinet FortiSOAR <7.2.0   ;   Fortinet FortiSOAR <7.0.3   ;   ","cnPatch":"Fortinet FortiSOAR SQL注入漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649866","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2023-23775","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.com/psirt/FG-IR-22-448","cnTitle":"Fortinet FortiSOAR SQL注入漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00415","cveId":"CVE-2023-23775","hazardLevel":"中","id":3268,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiAIOps是美国飞塔（Fortinet）公司的一款结合人工智能与机器学习(AI/ML) 的Fortinet网络配套解决方案。Fortinet FortiAIOps 2.0.0版本存在日志信息泄露漏洞，该漏洞源于应用对于敏感信息保护不足，经过身份验证的远程攻击者可利用该漏洞从API端点或日志文件中检索敏感信息。","cnImpact":"Fortinet FortiAIOps 2.0.0   ;   ","cnPatch":"Fortinet FortiAIOps日志信息泄露漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649856","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-27784","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.fortinet.com/psirt/FG-IR-24-072","cnTitle":"Fortinet FortiAIOps日志信息泄露漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00414","cveId":"CVE-2024-27784","hazardLevel":"中","id":3267,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiAIOps是美国飞塔（Fortinet）公司的一款结合人工智能与机器学习(AI/ML) 的Fortinet网络配套解决方案。Fortinet FortiAIOps 2.0.0版本存在跨站请求伪造漏洞，该漏洞源于WEB应用未充分验证请求是否来自可信用户。未经身份验证的远程攻击者可利用该漏洞通过诱骗受害者执行恶意GET请求，代表经过身份验证的用户执行任意操作。","cnImpact":"Fortinet FortiAIOps 2.0.0   ;   ","cnPatch":"Fortinet FortiAIOps跨站请求伪造漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649861","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-27783","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.fortinet.com/psirt/FG-IR-24-070","cnTitle":"Fortinet FortiAIOps跨站请求伪造漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00413","cveId":"CVE-2024-27783","hazardLevel":"高","id":3266,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiAIOps是美国飞塔（Fortinet）公司的一款结合人工智能与机器学习(AI/ML) 的Fortinet网络配套解决方案。Fortinet FortiAIOps 2.0.0版本存在代码问题漏洞，该漏洞源于存在多个会话过期不足，攻击者可利用该漏洞重新使用被盗的旧会话令牌通过精心设计的请求执行未经授权的操作。","cnImpact":"Fortinet FortiAIOps 2.0.0   ;   ","cnPatch":"Fortinet FortiAIOps代码问题漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649851","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-27782","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.fortinet.com/psirt/FG-IR-24-069","cnTitle":"Fortinet FortiAIOps代码问题漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00412","cveId":"CVE-2024-27782","hazardLevel":"高","id":3265,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiEDR是美国飞塔（Fortinet）公司的一个从头开始构建的端点安全解决方案。Fortinet FortiEDR存在访问控制错误漏洞，该漏洞源于不正确的访问控制。攻击者可利用该漏洞获取敏感信息。","cnImpact":"Fortinet FortiEDR Manager >=6.2.0，<=6.2.2   ;   Fortinet FortiEDR Manager 6.0.1   ;   ","cnPatch":"Fortinet FortiEDR访问控制错误漏洞（CNVD-2025-00410）的补丁:http://www.cnvd.org.cn/patchInfo/show/649846","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-45323","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.com/psirt/FG-IR-24-371","cnTitle":"Fortinet FortiEDR访问控制错误漏洞（CNVD-2025-00410）","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00410","cveId":"CVE-2024-45323","hazardLevel":"中","id":3264,"pubDate":1736179200000},{"cnDescribe":"用友NC是一款面向大型企业的综合性企业管理软件。用友网络科技股份有限公司用友NC存在XML实体注入漏洞，攻击者可利用该漏洞获取敏感信息。","cnImpact":"用友网络科技股份有限公司 用友NC   ;   ","cnPatch":"用友网络科技股份有限公司用友NC存在XML实体注入漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/648426","cnReference":"Null","cnSolution":"厂商已发布漏洞修复程序，请及时关注更新：https://yonyou.com/","cnTitle":"用友网络科技股份有限公司用友NC存在XML实体注入漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2024-49824","cveId":"Null","hazardLevel":"中","id":3263,"pubDate":1736179200000}]
+25-03-15.22:55:08.594 [http-nio-8091-exec-2] INFO  VulnerabilityRepository - 分页信息：当前页=1, 每页大小=10, 总记录数=10, 总页数=1
+25-03-15.22:56:53.670 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-03-15.22:56:53.678 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-03-15.22:56:55.029 [main            ] INFO  Application            - Starting Application using Java 17.0.11 on DESKTOP-35155M7 with PID 54716 (D:\Huawei\BugSource\BugSource-app\target\classes started by Enthusi4sm in D:\Huawei\BugSource)
+25-03-15.22:56:55.031 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-03-15.22:56:55.556 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-03-15.22:56:55.561 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-03-15.22:56:55.561 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-03-15.22:56:55.562 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-03-15.22:56:55.620 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-03-15.22:56:55.620 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 565 ms
+25-03-15.22:56:55.936 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-03-15.22:56:55.947 [main            ] INFO  TomcatWebServer        - Tomcat started on port(s): 8091 (http) with context path ''
+25-03-15.22:56:55.954 [main            ] INFO  Application            - Started Application in 1.189 seconds (JVM running for 1.484)
+25-03-15.22:56:56.198 [http-nio-8091-exec-1] INFO  [/]                    - Initializing Spring DispatcherServlet 'dispatcherServlet'
+25-03-15.22:56:56.198 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Initializing Servlet 'dispatcherServlet'
+25-03-15.22:56:56.198 [http-nio-8091-exec-1] INFO  DispatcherServlet      - Completed initialization in 0 ms
+25-03-15.22:56:56.265 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Starting...
+25-03-15.22:56:56.409 [http-nio-8091-exec-1] INFO  HikariDataSource       - HikariPool-1 - Start completed.
+25-03-15.22:56:56.517 [http-nio-8091-exec-1] INFO  VulnerabilityRepository - [{"cnDescribe":"IBM Cognos Analytics是美国国际商业机器（IBM）公司的一套商业智能软件。该软件包括报表、仪表板和记分卡等，并可通过分析关键因素与关键人等内容，协助企业调整决策。IBM Cognos Analytics存在输入验证错误漏洞，该漏洞源于存在不当的输入验证错误，远程攻击者可利用该漏洞进行网络钓鱼攻击。","cnImpact":"IBM IBM Cognos Analytics >=11.2.0，<=11.2.4 FP4   ;   IBM IBM Cognos Analytics >=12.0.0，<=12.0.3   ;   ","cnPatch":"IBM Cognos Analytics输入验证错误漏洞（CNVD-2025-0030733）的补丁:http://www.cnvd.org.cn/patchInfo/show/647201","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-45082","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://www.ibm.com/support/pages/node/7177223","cnTitle":"IBM Cognos Analytics输入验证错误漏洞（CNVD-2025-0030733）","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00307","cnvdId":"CNVD-2025-00307","cveId":"CVE-2024-45082","hazardLevel":"中","id":26690,"pubDate":1736265600000},{"cnDescribe":"IBM Cognos Analytics是美国国际商业机器（IBM）公司的一套商业智能软件。该软件包括报表、仪表板和记分卡等，并可通过分析关键因素与关键人等内容，协助企业调整决策。IBM Cognos Analytics存在跨站脚本漏洞，该漏洞源于列标题验证不正确，远程攻击者可利用该漏洞会执行恶意命令。","cnImpact":"IBM IBM Cognos Analytics >=12.0.0，<=12.0.3   ;   IBM IBM Cognos Analytics >=11.2.0，<=11.2.4 FP3   ;   ","cnPatch":"IBM Cognos Analytics跨站脚本漏洞（CNVD-2025-0030634）的补丁:http://www.cnvd.org.cn/patchInfo/show/647196","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-25042","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://www.ibm.com/support/pages/node/7173592","cnTitle":"IBM Cognos Analytics跨站脚本漏洞（CNVD-2025-0030634）","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00306","cnvdId":"CNVD-2025-00306","cveId":"CVE-2024-25042","hazardLevel":"中","id":26689,"pubDate":1736265600000},{"cnDescribe":"Fortinet FortiSwitchManager是美国飞塔（Fortinet）公司的一款网络交换机管理工具，旨在帮助组织管理其 FortiSwitch 系列网络交换机。Fortinet FortiSwitchManager存在访问控制不当漏洞。该漏洞是由于认证页面存在缺陷，无认证，安全配置不当导致的，攻击者可利用该漏洞可以通过API修改接口设置，获取敏感信息。","cnImpact":"Fortinet FortiSwitchManager 7.2.0   ;   Fortinet FortiSwitchManager 7.0.0   ;   Fortinet FortiSwitchManager 7.2.1   ;   Fortinet FortiSwitchManager 7.0.1   ;   Fortinet FortiSwitchManager 7.2.2   ;   ","cnPatch":"Fortinet FortiSwitchManager访问控制不当漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649871","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2023-36635","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新:https://fortiguard.com/psirt/FG-IR-22-174","cnTitle":"Fortinet FortiSwitchManager访问控制不当漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00416","cnvdId":"CNVD-2025-00416","cveId":"CVE-2023-36635","hazardLevel":"中","id":3270,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiWLM是美国飞塔（Fortinet）公司的一个无线管理器。Fortinet FortiWLM存在路径遍历漏洞，该漏洞源于程序未能正确地过滤资源或文件路径中的特殊元素。攻击者可利用该漏洞通过精心设计的http请求读取任意文件。","cnImpact":"Fortinet FortiWLM 8.6.1   ;   Fortinet FortiWLM 8.2.2   ;   Fortinet FortiWLM 8.6.5   ;   Fortinet FortiWLM 8.6.4   ;   Fortinet FortiWLM 8.6.3   ;   Fortinet FortiWLM 8.6.2   ;   Fortinet FortiWLM 8.6.0   ;   Fortinet FortiWLM 8.5.4   ;   Fortinet FortiWLM 8.5.3   ;   Fortinet FortiWLM 8.5.2   ;   Fortinet FortiWLM 8.5.1   ;   Fortinet FortiWLM 8.5.0   ;   Fortinet FortiWLM 8.6.6   ;   Fortinet FortiWLM 8.4.2   ;   Fortinet FortiWLM 8.4.1   ;   Fortinet FortiWLM 8.4.0   ;   Fortinet FortiWLM 8.3.2   ;   Fortinet FortiWLM 8.3.1   ;   Fortinet FortiWLM 8.3.0   ;   ","cnPatch":"Fortinet FortiWLM路径遍历漏洞（CNVD-2025-00417）的补丁:http://www.cnvd.org.cn/patchInfo/show/649876","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2023-42783","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.com/psirt/FG-IR-23-143","cnTitle":"Fortinet FortiWLM路径遍历漏洞（CNVD-2025-00417）","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00417","cnvdId":"CNVD-2025-00417","cveId":"CVE-2023-42783","hazardLevel":"高","id":3269,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiSOAR是美国飞塔（Fortinet）公司的一种安全编排、自动化和响应(SOAR) 解决方案。Fortinet FortiSOAR 7.2.0和7.0.3之前版本存在SQL注入漏洞，该漏洞源于对SQL命令中使用的特殊元素的不当中和，经过身份验证的攻击者可利用该漏洞通过特制的字符串参数执行未经授权的代码或命令。","cnImpact":"Fortinet FortiSOAR <7.2.0   ;   Fortinet FortiSOAR <7.0.3   ;   ","cnPatch":"Fortinet FortiSOAR SQL注入漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649866","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2023-23775","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.com/psirt/FG-IR-22-448","cnTitle":"Fortinet FortiSOAR SQL注入漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00415","cnvdId":"CNVD-2025-00415","cveId":"CVE-2023-23775","hazardLevel":"中","id":3268,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiAIOps是美国飞塔（Fortinet）公司的一款结合人工智能与机器学习(AI/ML) 的Fortinet网络配套解决方案。Fortinet FortiAIOps 2.0.0版本存在日志信息泄露漏洞，该漏洞源于应用对于敏感信息保护不足，经过身份验证的远程攻击者可利用该漏洞从API端点或日志文件中检索敏感信息。","cnImpact":"Fortinet FortiAIOps 2.0.0   ;   ","cnPatch":"Fortinet FortiAIOps日志信息泄露漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649856","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-27784","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.fortinet.com/psirt/FG-IR-24-072","cnTitle":"Fortinet FortiAIOps日志信息泄露漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00414","cnvdId":"CNVD-2025-00414","cveId":"CVE-2024-27784","hazardLevel":"中","id":3267,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiAIOps是美国飞塔（Fortinet）公司的一款结合人工智能与机器学习(AI/ML) 的Fortinet网络配套解决方案。Fortinet FortiAIOps 2.0.0版本存在跨站请求伪造漏洞，该漏洞源于WEB应用未充分验证请求是否来自可信用户。未经身份验证的远程攻击者可利用该漏洞通过诱骗受害者执行恶意GET请求，代表经过身份验证的用户执行任意操作。","cnImpact":"Fortinet FortiAIOps 2.0.0   ;   ","cnPatch":"Fortinet FortiAIOps跨站请求伪造漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649861","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-27783","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.fortinet.com/psirt/FG-IR-24-070","cnTitle":"Fortinet FortiAIOps跨站请求伪造漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00413","cnvdId":"CNVD-2025-00413","cveId":"CVE-2024-27783","hazardLevel":"高","id":3266,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiAIOps是美国飞塔（Fortinet）公司的一款结合人工智能与机器学习(AI/ML) 的Fortinet网络配套解决方案。Fortinet FortiAIOps 2.0.0版本存在代码问题漏洞，该漏洞源于存在多个会话过期不足，攻击者可利用该漏洞重新使用被盗的旧会话令牌通过精心设计的请求执行未经授权的操作。","cnImpact":"Fortinet FortiAIOps 2.0.0   ;   ","cnPatch":"Fortinet FortiAIOps代码问题漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/649851","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-27782","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.fortinet.com/psirt/FG-IR-24-069","cnTitle":"Fortinet FortiAIOps代码问题漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00412","cnvdId":"CNVD-2025-00412","cveId":"CVE-2024-27782","hazardLevel":"高","id":3265,"pubDate":1736179200000},{"cnDescribe":"Fortinet FortiEDR是美国飞塔（Fortinet）公司的一个从头开始构建的端点安全解决方案。Fortinet FortiEDR存在访问控制错误漏洞，该漏洞源于不正确的访问控制。攻击者可利用该漏洞获取敏感信息。","cnImpact":"Fortinet FortiEDR Manager >=6.2.0，<=6.2.2   ;   Fortinet FortiEDR Manager 6.0.1   ;   ","cnPatch":"Fortinet FortiEDR访问控制错误漏洞（CNVD-2025-00410）的补丁:http://www.cnvd.org.cn/patchInfo/show/649846","cnReference":"https://nvd.nist.gov/vuln/detail/CVE-2024-45323","cnSolution":"厂商已发布了漏洞修复程序，请及时关注更新：https://fortiguard.com/psirt/FG-IR-24-371","cnTitle":"Fortinet FortiEDR访问控制错误漏洞（CNVD-2025-00410）","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2025-00410","cnvdId":"CNVD-2025-00410","cveId":"CVE-2024-45323","hazardLevel":"中","id":3264,"pubDate":1736179200000},{"cnDescribe":"用友NC是一款面向大型企业的综合性企业管理软件。用友网络科技股份有限公司用友NC存在XML实体注入漏洞，攻击者可利用该漏洞获取敏感信息。","cnImpact":"用友网络科技股份有限公司 用友NC   ;   ","cnPatch":"用友网络科技股份有限公司用友NC存在XML实体注入漏洞的补丁:http://www.cnvd.org.cn/patchInfo/show/648426","cnReference":"Null","cnSolution":"厂商已发布漏洞修复程序，请及时关注更新：https://yonyou.com/","cnTitle":"用友网络科技股份有限公司用友NC存在XML实体注入漏洞","cnTypes":"通用型漏洞","cnUrl":"https://www.cnvd.org.cn/flaw/show/CNVD-2024-49824","cnvdId":"CNVD-2024-49824","cveId":"Null","hazardLevel":"中","id":3263,"pubDate":1736179200000}]
+25-03-15.22:56:56.522 [http-nio-8091-exec-1] INFO  VulnerabilityRepository - 分页信息：当前页=1, 每页大小=10, 总记录数=10, 总页数=1
+25-03-15.22:57:02.627 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
+25-03-15.22:57:02.635 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+25-03-15.23:15:13.830 [main            ] INFO  Application            - Starting Application using Java 17.0.11 on DESKTOP-35155M7 with PID 47296 (D:\Huawei\BugSource\BugSource-app\target\classes started by Enthusi4sm in D:\Huawei\BugSource)
+25-03-15.23:15:13.832 [main            ] INFO  Application            - The following 1 profile is active: "dev"
+25-03-15.23:15:14.355 [main            ] INFO  TomcatWebServer        - Tomcat initialized with port(s): 8091 (http)
+25-03-15.23:15:14.360 [main            ] INFO  Http11NioProtocol      - Initializing ProtocolHandler ["http-nio-8091"]
+25-03-15.23:15:14.361 [main            ] INFO  StandardService        - Starting service [Tomcat]
+25-03-15.23:15:14.361 [main            ] INFO  StandardEngine         - Starting Servlet engine: [Apache Tomcat/9.0.75]
+25-03-15.23:15:14.420 [main            ] INFO  [/]                    - Initializing Spring embedded WebApplicationContext
+25-03-15.23:15:14.420 [main            ] INFO  ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 563 ms
+25-03-15.23:15:14.741 [main            ] INFO  Http11NioProtocol      - Starting ProtocolHandler ["http-nio-8091"]
+25-03-15.23:15:14.744 [main            ] WARN  AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8091 is already in use
+25-03-15.23:15:14.746 [main            ] INFO  Http11NioProtocol      - Pausing ProtocolHandler ["http-nio-8091"]
+25-03-15.23:15:14.746 [main            ] INFO  StandardService        - Stopping service [Tomcat]
+25-03-15.23:15:14.748 [main            ] INFO  Http11NioProtocol      - Stopping ProtocolHandler ["http-nio-8091"]
+25-03-15.23:15:14.749 [main            ] INFO  Http11NioProtocol      - Destroying ProtocolHandler ["http-nio-8091"]
+25-03-15.23:15:14.753 [main            ] INFO  ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+25-03-15.23:15:14.764 [main            ] ERROR LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8091 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8091 or configure this application to listen on another port.
+

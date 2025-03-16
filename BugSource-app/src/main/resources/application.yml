@@ -1,0 +1,5 @@
+spring:
+  config:
+    name: BugSource-app
+  profiles:
+    active: dev
