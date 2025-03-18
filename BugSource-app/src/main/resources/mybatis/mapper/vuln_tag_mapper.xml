@@ -25,5 +25,9 @@
         WHERE vuln_id = #{vulnId};
     </update>
 
+    <select id="queryTagsByVulnId" parameterType="int" resultMap="dataMap">
+        SELECT * FROM vuln_tag WHERE vuln_id = #{vulnId} ORDER BY  id DESC
+    </select>
+
 
 </mapper>
