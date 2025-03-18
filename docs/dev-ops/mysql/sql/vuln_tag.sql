@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `vuln_tag`;
 CREATE TABLE `vuln_tag`  (
-  `id` int NOT NULL COMMENT '自增id',
+  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
   `vuln_id` int NOT NULL COMMENT '外键',
   `tag` varchar(255) CHARACTER SET armscii8 COLLATE armscii8_general_ci NOT NULL COMMENT '标签\r\n',
   `created_time` datetime NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

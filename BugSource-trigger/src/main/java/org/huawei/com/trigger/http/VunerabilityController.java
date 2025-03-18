@@ -2,6 +2,7 @@ package org.huawei.com.trigger.http;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
+import org.huawei.com.DTO.VulnTagModifyRequestDTO;
 import org.huawei.com.DTO.VulnerabilityInfoRequestDTO;
 import org.huawei.com.DTO.VulnerabilityInfoResponseDTO;
 import org.huawei.com.IVunerabilityInfo;
@@ -85,6 +86,24 @@ public class VunerabilityController implements IVunerabilityInfo {
         }catch (Exception e){
             log.error("queryLatestInfo error:{}",e.getMessage(),e);
             return Response.<List<VulnerabilityInfoResponseDTO>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @Override
+    @RequestMapping(value = "/modify_tag", method = RequestMethod.POST)
+    public Response<String> modifyVulnTag(@RequestBody VulnTagModifyRequestDTO vulnTagModifyRequestDTO) {
+        try {
+            vunerabilityService.modifyVulnTag(vulnTagModifyRequestDTO.getVulnId(), vulnTagModifyRequestDTO.getTag());
+            return Response.<String>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .build();
+        } catch (Exception e) {
+            log.error("queryLatestInfo error:{}",e.getMessage(),e);
+            return Response.<String>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
