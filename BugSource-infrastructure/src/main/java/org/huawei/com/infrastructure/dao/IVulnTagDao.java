@@ -14,7 +14,7 @@ import java.util.List;
 public interface IVulnTagDao {
     void insertVulnTag(VulnTag vulnTag);
 
-    void deleteVulnTag(Long vulnId);
+    void deleteVulnTag(VulnTag vulnTag);
 
     void updateVulnTag(VulnTag vulnTag);
 

@@ -14,9 +14,9 @@
         values (#{vulnId}, #{tag}, now(), now())
     </insert>
 
-    <delete id="deleteVulnTag" parameterType="java.lang.Long">
+    <delete id="deleteVulnTag" parameterType="org.huawei.com.infrastructure.dao.po.VulnTag">
         DELETE FROM vuln_tag
-        WHERE vuln_id = #{vulnId};
+        WHERE vuln_id = #{vulnId} and tag = #{tag};
     </delete>
 
     <update id="updateVulnTag" parameterType="org.huawei.com.infrastructure.dao.po.VulnTag">

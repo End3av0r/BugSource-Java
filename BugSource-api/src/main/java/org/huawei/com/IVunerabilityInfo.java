@@ -14,7 +14,10 @@ public interface IVunerabilityInfo {
     Response<List<VulnerabilityInfoResponseDTO>> queryLatestInfo(int limit, int offset);
 
     Response<List<VulnerabilityInfoResponseDTO>> queryVulnByName(VulnerabilityInfoRequestDTO requestDTO);
-    Response<String> modifyVulnTag(VulnTagModifyRequestDTO vulnTagModifyRequestDTO);
+    Response<String> deleteVulnTag(VulnTagModifyRequestDTO vulnTagModifyRequestDTO);
+
+    Response<String> insertVulnTag(VulnTagModifyRequestDTO vulnTagModifyRequestDTO);
+
     @RequestMapping(value = "query",method = RequestMethod.POST)
     Response<List<VulnerabilityInfoResponseDTO>> queryVulnByTimeRange(@RequestBody VulnerabilityInfoRequestDTO requestDTO);
 }

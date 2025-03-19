@@ -126,10 +126,28 @@ public class VunerabilityController implements IVunerabilityInfo {
     }
 
     @Override
-    @RequestMapping(value = "/modify_tag", method = RequestMethod.POST)
-    public Response<String> modifyVulnTag(@RequestBody VulnTagModifyRequestDTO vulnTagModifyRequestDTO) {
+    @RequestMapping(value = "/delete_tag", method = RequestMethod.POST)
+    public Response<String> deleteVulnTag(@RequestBody VulnTagModifyRequestDTO vulnTagModifyRequestDTO) {
         try {
-            vunerabilityService.modifyVulnTag(vulnTagModifyRequestDTO.getVulnId(), vulnTagModifyRequestDTO.getTag());
+            vunerabilityService.deleteVulnTag(vulnTagModifyRequestDTO.getVulnId(), vulnTagModifyRequestDTO.getTag());
+            return Response.<String>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .build();
+        } catch (Exception e) {
+            log.error("queryLatestInfo error:{}",e.getMessage(),e);
+            return Response.<String>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @Override
+    @RequestMapping(value = "/add_tag", method = RequestMethod.POST)
+    public Response<String> insertVulnTag(@RequestBody VulnTagModifyRequestDTO vulnTagModifyRequestDTO) {
+        try {
+            vunerabilityService.insertVulnTag(vulnTagModifyRequestDTO.getVulnId(), vulnTagModifyRequestDTO.getTag());
             return Response.<String>builder()
                     .code(ResponseCode.SUCCESS.getCode())
                     .info(ResponseCode.SUCCESS.getInfo())
