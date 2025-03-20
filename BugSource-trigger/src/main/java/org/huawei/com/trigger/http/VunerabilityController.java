@@ -1,5 +1,6 @@
 package org.huawei.com.trigger.http;
 
+import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.huawei.com.DTO.VulnTagModifyRequestDTO;
 import org.huawei.com.DTO.VulnerabilityInfoRequestDTO;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @Slf4j
 @RestController()
+@CrossOrigin("*")
 @RequestMapping("/api/vuln")
 public class VunerabilityController implements IVunerabilityInfo {
 
@@ -37,11 +39,13 @@ public class VunerabilityController implements IVunerabilityInfo {
                     .build();
         }
         try {
-            List<VulnerabilityEntity> vulnerabilityEntities = vunerabilityService.queryLatestVuln(limit, offset);
+            List<VulnerabilityAggregate> vulnerabilityAggregates = vunerabilityService.queryLatestVuln(limit, offset);
             List<VulnerabilityInfoResponseDTO> res = new ArrayList<>();
-            for (VulnerabilityEntity vulnerabilityEntity : vulnerabilityEntities) {
+            for (VulnerabilityAggregate vulnerabilityAggregate : vulnerabilityAggregates) {
                 VulnerabilityInfoResponseDTO infoResponseDTO = new VulnerabilityInfoResponseDTO();
-                BeanUtils.copyProperties(vulnerabilityEntity, infoResponseDTO);
+                VulnerabilityEntity vulnerabilityEntity = vulnerabilityAggregate.getVulnerabilityEntity();
+                BeanUtils.copyProperties(vulnerabilityEntity,infoResponseDTO);;
+                infoResponseDTO.setTag(vulnerabilityAggregate.getTags());
                 res.add(infoResponseDTO);
             }
             return Response.<List<VulnerabilityInfoResponseDTO>>builder()
@@ -74,11 +78,13 @@ public class VunerabilityController implements IVunerabilityInfo {
         try {
             VulnerabilityEntity vulnReq = new VulnerabilityEntity();
             BeanUtils.copyProperties(requestDTO, vulnReq);
-            List<VulnerabilityAggregate> vulnerabilityAggregates = vunerabilityService.queryVulnByInfo(vulnReq, startDate,endDate,limit, offset);
+            List<VulnerabilityAggregate> vulnerabilityAggregates = vunerabilityService.queryVulnByInfo(vulnReq, startDate,endDate,offset, limit);
             List<VulnerabilityInfoResponseDTO> res = new ArrayList<>();
             for (VulnerabilityAggregate vulnerabilityAggregate : vulnerabilityAggregates) {
                 VulnerabilityInfoResponseDTO infoResponseDTO = new VulnerabilityInfoResponseDTO();
-                BeanUtils.copyProperties(vulnerabilityAggregate, infoResponseDTO);
+                VulnerabilityEntity vulnerabilityEntity = vulnerabilityAggregate.getVulnerabilityEntity();
+                BeanUtils.copyProperties(vulnerabilityEntity,infoResponseDTO);;
+                infoResponseDTO.setTag(vulnerabilityAggregate.getTags());
                 res.add(infoResponseDTO);
             }
             return Response.<List<VulnerabilityInfoResponseDTO>>builder()
