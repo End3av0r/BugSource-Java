@@ -65,6 +65,7 @@ public class VunerabilityController implements IVunerabilityInfo {
     @Override
     @RequestMapping(value = "query",method = RequestMethod.POST)
     public Response<List<VulnerabilityInfoResponseDTO>> queryVulnByName(@RequestBody VulnerabilityInfoRequestDTO requestDTO) {
+
         int limit = requestDTO.getLimit();
         int offset = requestDTO.getOffset();
         if(limit < 0 || offset < 0){
@@ -95,6 +96,29 @@ public class VunerabilityController implements IVunerabilityInfo {
         }catch (Exception e){
             log.error("queryLatestInfo error:{}",e.getMessage(),e);
             return Response.<List<VulnerabilityInfoResponseDTO>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @Override
+    @RequestMapping(value = "queryId",method = RequestMethod.GET)
+    public Response<VulnerabilityInfoResponseDTO> queryVulnByName(@RequestParam int id) {
+        try {
+            VulnerabilityAggregate vulnerabilityAggregate = vunerabilityService.queryVulnById(id);
+            VulnerabilityInfoResponseDTO vulnerabilityInfoResponseDTO = new VulnerabilityInfoResponseDTO();
+            VulnerabilityEntity vulnerabilityEntity = vulnerabilityAggregate.getVulnerabilityEntity();
+            BeanUtils.copyProperties(vulnerabilityEntity, vulnerabilityInfoResponseDTO);
+            vulnerabilityInfoResponseDTO.setTag(vulnerabilityAggregate.getTags());
+            return Response.<VulnerabilityInfoResponseDTO>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(vulnerabilityInfoResponseDTO)
+                    .build();
+        } catch (Exception e){
+            log.error("queryLatestInfo error:{}", e.getMessage(), e);
+            return Response.<VulnerabilityInfoResponseDTO>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
@@ -136,6 +160,7 @@ public class VunerabilityController implements IVunerabilityInfo {
     public Response<String> deleteVulnTag(@RequestBody VulnTagModifyRequestDTO vulnTagModifyRequestDTO) {
         try {
             vunerabilityService.deleteVulnTag(vulnTagModifyRequestDTO.getVulnId(), vulnTagModifyRequestDTO.getTag());
+            log.info("删除标签 " + vulnTagModifyRequestDTO.getTag() + "成功");
             return Response.<String>builder()
                     .code(ResponseCode.SUCCESS.getCode())
                     .info(ResponseCode.SUCCESS.getInfo())
@@ -154,6 +179,7 @@ public class VunerabilityController implements IVunerabilityInfo {
     public Response<String> insertVulnTag(@RequestBody VulnTagModifyRequestDTO vulnTagModifyRequestDTO) {
         try {
             vunerabilityService.insertVulnTag(vulnTagModifyRequestDTO.getVulnId(), vulnTagModifyRequestDTO.getTag());
+            log.info("添加标签 " + vulnTagModifyRequestDTO.getTag() + "成功");
             return Response.<String>builder()
                     .code(ResponseCode.SUCCESS.getCode())
                     .info(ResponseCode.SUCCESS.getInfo())

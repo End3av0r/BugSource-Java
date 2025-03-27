@@ -19,4 +19,5 @@ public interface IVulnTagDao {
     void updateVulnTag(VulnTag vulnTag);
 
     List<VulnTag> queryTagsByVulnId(int id);
+
 }

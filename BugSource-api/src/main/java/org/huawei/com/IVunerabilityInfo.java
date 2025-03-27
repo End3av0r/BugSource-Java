@@ -18,6 +18,8 @@ public interface IVunerabilityInfo {
 
     Response<String> insertVulnTag(VulnTagModifyRequestDTO vulnTagModifyRequestDTO);
 
+    Response<VulnerabilityInfoResponseDTO> queryVulnByName(int id);
+
     @RequestMapping(value = "query",method = RequestMethod.POST)
     Response<List<VulnerabilityInfoResponseDTO>> queryVulnByTimeRange(@RequestBody VulnerabilityInfoRequestDTO requestDTO);
 }
