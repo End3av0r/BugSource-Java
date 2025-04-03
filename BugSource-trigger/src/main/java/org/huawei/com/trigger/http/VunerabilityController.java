@@ -1,12 +1,12 @@
 package org.huawei.com.trigger.http;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.huawei.com.DTO.VulnTagModifyRequestDTO;
 import org.huawei.com.DTO.VulnerabilityInfoRequestDTO;
 import org.huawei.com.DTO.VulnerabilityInfoResponseDTO;
 import org.huawei.com.IVunerabilityInfo;
 import org.huawei.com.domain.vulnerability.model.aggregate.VulnerabilityAggregate;
+import org.huawei.com.domain.vulnerability.model.aggregate.VulnerabilityQueryResponse;
 import org.huawei.com.domain.vulnerability.model.entity.VulnerabilityEntity;
 import org.huawei.com.domain.vulnerability.service.IVunerabilityService;
 import org.huawei.com.types.enums.ResponseCode;
@@ -15,9 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Slf4j
@@ -39,12 +37,11 @@ public class VunerabilityController implements IVunerabilityInfo {
                     .build();
         }
         try {
-            List<VulnerabilityAggregate> vulnerabilityAggregates = vunerabilityService.queryLatestVuln(limit, offset);
+            List<VulnerabilityAggregate> vulnerabilityAggregates = vunerabilityService.queryLatestVuln(offset, limit);
             List<VulnerabilityInfoResponseDTO> res = new ArrayList<>();
             for (VulnerabilityAggregate vulnerabilityAggregate : vulnerabilityAggregates) {
                 VulnerabilityInfoResponseDTO infoResponseDTO = new VulnerabilityInfoResponseDTO();
-                VulnerabilityEntity vulnerabilityEntity = vulnerabilityAggregate.getVulnerabilityEntity();
-                BeanUtils.copyProperties(vulnerabilityEntity,infoResponseDTO);;
+                BeanUtils.copyProperties(vulnerabilityAggregate.getVulnerabilityEntity(), infoResponseDTO);
                 infoResponseDTO.setTag(vulnerabilityAggregate.getTags());
                 res.add(infoResponseDTO);
             }
@@ -64,12 +61,12 @@ public class VunerabilityController implements IVunerabilityInfo {
 
     @Override
     @RequestMapping(value = "query",method = RequestMethod.POST)
-    public Response<List<VulnerabilityInfoResponseDTO>> queryVulnByName(@RequestBody VulnerabilityInfoRequestDTO requestDTO) {
-
+    public Response<Map<String,Object>> queryVulnByName(@RequestBody VulnerabilityInfoRequestDTO requestDTO) {
+        log.info("Received query request: {}", requestDTO);
         int limit = requestDTO.getLimit();
         int offset = requestDTO.getOffset();
         if(limit < 0 || offset < 0){
-            return Response.<List<VulnerabilityInfoResponseDTO>>builder()
+            Response.<Map<String, Object>>builder()
                     .code(ResponseCode.ILLEGAL_PARAMETER.getCode())
                     .info(ResponseCode.ILLEGAL_PARAMETER.getInfo())
                     .build();
@@ -79,27 +76,36 @@ public class VunerabilityController implements IVunerabilityInfo {
         try {
             VulnerabilityEntity vulnReq = new VulnerabilityEntity();
             BeanUtils.copyProperties(requestDTO, vulnReq);
-            List<VulnerabilityAggregate> vulnerabilityAggregates = vunerabilityService.queryVulnByInfo(vulnReq, startDate,endDate,offset, limit);
+            log.info(vulnReq.getCnTitle());
+            log.info("CNVD ID: {}", vulnReq.getCnvdId());
+            log.info("CVE ID: {}", vulnReq.getCveId());
+
+            VulnerabilityQueryResponse responseData = vunerabilityService.queryVulnByInfo(vulnReq, startDate,endDate,limit, offset);
+            List<VulnerabilityAggregate> vulnerabilityAggregates = responseData.getAggregateList();
+            Map<String,Object> resData=new HashMap<>();
             List<VulnerabilityInfoResponseDTO> res = new ArrayList<>();
             for (VulnerabilityAggregate vulnerabilityAggregate : vulnerabilityAggregates) {
                 VulnerabilityInfoResponseDTO infoResponseDTO = new VulnerabilityInfoResponseDTO();
-                VulnerabilityEntity vulnerabilityEntity = vulnerabilityAggregate.getVulnerabilityEntity();
-                BeanUtils.copyProperties(vulnerabilityEntity,infoResponseDTO);;
+                BeanUtils.copyProperties(vulnerabilityAggregate.getVulnerabilityEntity(), infoResponseDTO);
                 infoResponseDTO.setTag(vulnerabilityAggregate.getTags());
                 res.add(infoResponseDTO);
             }
-            return Response.<List<VulnerabilityInfoResponseDTO>>builder()
+            resData.put("data",res);
+            resData.put("total",responseData.getTotal());
+            log.info("Query result size: {}", vulnerabilityAggregates.size());
+            return Response.<Map<String,Object>>builder()
                     .code(ResponseCode.SUCCESS.getCode())
                     .info(ResponseCode.SUCCESS.getInfo())
-                    .data(res)
+                    .data(resData)
                     .build();
         }catch (Exception e){
             log.error("queryLatestInfo error:{}",e.getMessage(),e);
-            return Response.<List<VulnerabilityInfoResponseDTO>>builder()
+            Response.<Map<String, Object>>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
         }
+        return null;
     }
 
     @Override

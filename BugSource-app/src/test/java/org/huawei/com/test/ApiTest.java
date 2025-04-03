@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.huawei.com.DTO.VulnerabilityInfoRequestDTO;
 import org.huawei.com.domain.vulnerability.model.aggregate.VulnerabilityAggregate;
+import org.huawei.com.domain.vulnerability.model.aggregate.VulnerabilityQueryResponse;
 import org.huawei.com.domain.vulnerability.model.entity.VulnerabilityEntity;
 import org.huawei.com.domain.vulnerability.service.IVunerabilityService;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class ApiTest {
     IVunerabilityService vunerabilityService;
     @Test
     public void test_latest() {
-        List<VulnerabilityEntity> vulnerabilityEntities = vunerabilityService.queryLatestVuln(0, 10);
+        List<VulnerabilityAggregate> vulnerabilityEntities = vunerabilityService.queryLatestVuln(0, 10);
         log.info("queryLatestInfo:{}", JSON.toJSONString(vulnerabilityEntities));
     }
 
@@ -35,18 +36,19 @@ public class ApiTest {
         String startDateStr = "2024-01-30";
         String endDateStr = "2024-01-31";
         //req.setCnvdId("CNVD-2024-49053");
-       // req.setCnTitle("SQL");
+        req.setCnTitle("sql");
+        req.setCnvdId("");
+        req.setCveId("");
         // 将字符串日期转换为 Date 对象
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        try {
-            Date startDate = dateFormat.parse(startDateStr);
-            Date endDate = dateFormat.parse(endDateStr);
-            List<VulnerabilityAggregate> vulnerabilityEntities = vunerabilityService.queryVulnByInfo(req,startDate,endDate,0,10);
-            System.out.println("queryVulnByInfo:" + vulnerabilityEntities.size());
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+        //Date startDate = dateFormat.parse(startDateStr);
+        //Date endDate = dateFormat.parse(endDateStr);
+        Date startDate=null;
+        Date endDate=null;
+        VulnerabilityQueryResponse
+                vqr = vunerabilityService.queryVulnByInfo(req,startDate,endDate,0,10);
+        System.out.println("queryVulnByInfo:" + vqr.getTotal());
 
 
     }
@@ -67,9 +69,10 @@ public class ApiTest {
 
             // 调用查询方法
             //List<VulnerabilityAggregate> vulnerabilityEntities = vunerabilityService.queryVulnByTimeRange(startDate, endDate);
-            List<VulnerabilityAggregate> vulnerabilityEntities = vunerabilityService.queryVulnByInfo(req,startDate,endDate,0,10);
+            VulnerabilityQueryResponse
+                    vqr = vunerabilityService.queryVulnByInfo(req,startDate,endDate,0,10);
             // 输出查询结果
-            System.out.println("queryVulnByInfo:" + vulnerabilityEntities.size());
+            System.out.println("queryVulnByInfo:" + vqr.getTotal());
         } catch (ParseException e) {
             e.printStackTrace();
         }

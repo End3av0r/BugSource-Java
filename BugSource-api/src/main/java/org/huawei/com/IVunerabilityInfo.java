@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface IVunerabilityInfo {
     Response<List<VulnerabilityInfoResponseDTO>> queryLatestInfo(int limit, int offset);
 
-    Response<List<VulnerabilityInfoResponseDTO>> queryVulnByName(VulnerabilityInfoRequestDTO requestDTO);
+    Response<Map<String,Object>> queryVulnByName(@RequestBody VulnerabilityInfoRequestDTO requestDTO);
     Response<String> deleteVulnTag(VulnTagModifyRequestDTO vulnTagModifyRequestDTO);
 
     Response<String> insertVulnTag(VulnTagModifyRequestDTO vulnTagModifyRequestDTO);
