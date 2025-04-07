@@ -144,7 +144,7 @@ public class VunerabilityController implements IVunerabilityInfo {
             List<VulnerabilityInfoResponseDTO> res = new ArrayList<>();
             for (VulnerabilityAggregate vulnerabilityAggregate : vulnerabilityAggregates) {
                 VulnerabilityInfoResponseDTO infoResponseDTO = new VulnerabilityInfoResponseDTO();
-                BeanUtils.copyProperties(vulnerabilityAggregate, infoResponseDTO);
+                BeanUtils.copyProperties(vulnerabilityAggregate.getVulnerabilityEntity(), infoResponseDTO);
                 res.add(infoResponseDTO);
             }
             return Response.<List<VulnerabilityInfoResponseDTO>>builder()
@@ -196,6 +196,86 @@ public class VunerabilityController implements IVunerabilityInfo {
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
+        }
+    }
+
+    /**
+     * 每日数据统计
+     * @param days
+     * @return
+     */
+    @GetMapping("/daily_count")
+    public Response<List<Map<String, Object>>> getDailyNewVuln(@RequestParam int days) {
+        if (days <= 0) {
+            return Response.<List<Map<String, Object>>>builder()
+                .code(ResponseCode.ILLEGAL_PARAMETER.getCode())
+                .info("参数days必须大于0")
+                .build();
+        }
+        try {
+            List<Map<String, Object>> result = vunerabilityService.countDailyNewVuln(Math.min(days, 30));
+            return Response.<List<Map<String, Object>>>builder()
+                .code(ResponseCode.SUCCESS.getCode())
+                .info(ResponseCode.SUCCESS.getInfo())
+                .data(result)
+                .build();
+        } catch (Exception e) {
+            log.error("getDailyNewVuln error:{}", e.getMessage(), e);
+            return Response.<List<Map<String, Object>>>builder()
+                .code(ResponseCode.UN_ERROR.getCode())
+                .info(ResponseCode.UN_ERROR.getInfo())
+                .build();
+        }
+    }
+
+    /**
+     * 每月数据统计
+     * @param months
+     * @return
+     */
+    @GetMapping("/monthly_count")
+    public Response<List<Map<String, Object>>> getMonthlyNewVuln(@RequestParam(required = false, defaultValue = "12") int months) {
+        int limit = Math.min(months, 12);
+        if (limit <= 0) {
+            return Response.<List<Map<String, Object>>>builder()
+                .code(ResponseCode.ILLEGAL_PARAMETER.getCode())
+                .info("参数months必须大于0")
+                .build();
+        }
+        try {
+            List<Map<String, Object>> result = vunerabilityService.countMonthlyNewVuln(limit);
+            return Response.<List<Map<String, Object>>>builder()
+                .code(ResponseCode.SUCCESS.getCode())
+                .info(ResponseCode.SUCCESS.getInfo())
+                .data(result)
+                .build();
+        } catch (Exception e) {
+            log.error("getMonthlyNewVuln error:{}", e.getMessage(), e);
+            return Response.<List<Map<String, Object>>>builder()
+                .code(ResponseCode.UN_ERROR.getCode())
+                .info(ResponseCode.UN_ERROR.getInfo())
+                .build();
+        }
+    }
+
+    /**
+     * 各类型漏洞数量统计
+     */
+    @GetMapping("/type_count")
+    public Response<List<Map<String, Object>>> getTypeCount() {
+        try {
+            List<Map<String, Object>> result = vunerabilityService.countVulnByType();
+            return Response.<List<Map<String, Object>>>builder()
+                .code(ResponseCode.SUCCESS.getCode())
+                .info(ResponseCode.SUCCESS.getInfo())
+                .data(result)
+                .build();
+        } catch (Exception e) {
+            log.error("getTypeCount error:{}", e.getMessage(), e);
+            return Response.<List<Map<String, Object>>>builder()
+                .code(ResponseCode.UN_ERROR.getCode())
+                .info(ResponseCode.UN_ERROR.getInfo())
+                .build();
         }
     }
 }
