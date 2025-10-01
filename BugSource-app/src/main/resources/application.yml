@@ -3,3 +3,13 @@ spring:
     name: BugSource-app
   profiles:
     active: dev
+  ai:
+    openai:
+      apiKey: sk-vfwrfeglfndoanafsauqgxbzwrccdmnazeorqossyatdprxq
+      baseUrl: https://api.siliconflow.cn
+      chat:
+        completionsPath: /v1/chat/completions
+        options:
+          model: Qwen/Qwen3-Next-80B-A3B-Instruct
+          httpHeaders:
+            Content-Type: application/json
