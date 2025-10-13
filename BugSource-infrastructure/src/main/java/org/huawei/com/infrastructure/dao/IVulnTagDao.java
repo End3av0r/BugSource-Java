@@ -19,4 +19,10 @@ public interface IVulnTagDao {
     void updateVulnTag(VulnTag vulnTag);
 
     List<VulnTag> queryTagsByVulnId(int id);
+
+    /**
+     * 查询所有不重复的标签
+     * @return 所有标签列表
+     */
+    List<String> queryAllDistinctTags();
 }

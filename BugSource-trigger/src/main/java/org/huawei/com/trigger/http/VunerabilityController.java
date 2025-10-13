@@ -202,6 +202,26 @@ public class VunerabilityController implements IVunerabilityInfo {
         }
     }
 
+    @Override
+    @RequestMapping(value = "/all_tags", method = RequestMethod.GET)
+    public Response<List<String>> queryAllDistinctTags() {
+        try {
+            List<String> allTags = vunerabilityService.queryAllDistinctTags();
+            log.info("查询所有标签成功，共{}个标签", allTags.size());
+            return Response.<List<String>>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(allTags)
+                    .build();
+        } catch (Exception e) {
+            log.error("查询所有标签失败:{}", e.getMessage(), e);
+            return Response.<List<String>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
     /**
      * 每日数据统计
      * 

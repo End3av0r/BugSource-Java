@@ -21,6 +21,12 @@ public interface IVunerabilityInfo {
 
     Response<String> insertVulnTag(VulnTagModifyRequestDTO vulnTagModifyRequestDTO);
 
+    /**
+     * 查询所有不重复的标签
+     * @return 所有标签列表
+     */
+    Response<List<String>> queryAllDistinctTags();
+
     Response<VulnerabilityInfoResponseDTO> queryVulnByName(int id);
 
     @RequestMapping(value = "query", method = RequestMethod.POST)
