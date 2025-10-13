@@ -278,4 +278,25 @@ public class VunerabilityController implements IVunerabilityInfo {
                 .build();
         }
     }
+
+    /**
+     * 各类型漏洞数量统计
+     */
+    @GetMapping("/level_count")
+    public Response<List<Map<String, Object>>> getLevleCount() {
+        try {
+            List<Map<String, Object>> result = vunerabilityService.countVulnByLevel();
+            return Response.<List<Map<String, Object>>>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(result)
+                    .build();
+        } catch (Exception e) {
+            log.error("getTypeCount error:{}", e.getMessage(), e);
+            return Response.<List<Map<String, Object>>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
 }
