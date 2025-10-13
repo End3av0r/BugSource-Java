@@ -29,5 +29,9 @@
         SELECT * FROM vuln_tag WHERE vuln_id = #{vulnId} ORDER BY  id DESC
     </select>
 
+    <select id="queryAllDistinctTags" resultType="string">
+        SELECT DISTINCT tag FROM vuln_tag ORDER BY tag ASC
+    </select>
+
 
 </mapper>
