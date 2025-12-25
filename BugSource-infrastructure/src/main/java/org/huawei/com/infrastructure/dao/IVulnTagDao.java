@@ -29,7 +29,7 @@ public interface IVulnTagDao {
 
     /**
      * 根据标签查询漏洞ID列表
-     * 
+     *
      * @param tag 标签名称
      * @return 漏洞ID列表
      */

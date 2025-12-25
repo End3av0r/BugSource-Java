@@ -21,4 +21,12 @@ public interface ITagDao {
     List<Tag> queryAllTags();
 
     List<Tag> queryActiveTagsOnly();
+
+    /**
+     * 统计每个标签的漏洞数量
+     * 通过关联表 vulnerability_tag_relation 统计
+     *
+     * @return 标签统计列表，每个Map包含tag和count字段
+     */
+    List<java.util.Map<String, Object>> countVulnByTag();
 }

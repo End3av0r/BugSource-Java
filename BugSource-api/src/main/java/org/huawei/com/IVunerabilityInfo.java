@@ -46,4 +46,22 @@ public interface IVunerabilityInfo {
 
     @RequestMapping(value = "upload_markdown", method = RequestMethod.POST)
     Response<VulnerabilityInfoResponseDTO> uploadMarkdown(@RequestBody UploadMarkdownDTO dto);
+
+    /**
+     * 仅解析Markdown，不保存到数据库
+     *
+     * @param dto Markdown内容
+     * @return 解析后的漏洞信息
+     */
+    @RequestMapping(value = "parse_markdown", method = RequestMethod.POST)
+    Response<VulnerabilityInfoResponseDTO> parseMarkdownOnly(@RequestBody UploadMarkdownDTO dto);
+
+    /**
+     * 保存漏洞信息到数据库
+     *
+     * @param dto 漏洞信息
+     * @return 保存结果
+     */
+    @RequestMapping(value = "save_vulnerability", method = RequestMethod.POST)
+    Response<VulnerabilityInfoResponseDTO> saveVulnerability(@RequestBody VulnerabilityInfoResponseDTO dto);
 }

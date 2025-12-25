@@ -37,5 +37,4 @@
         SELECT vuln_id FROM vuln_tag WHERE tag = #{tag} ORDER BY vuln_id ASC
     </select>
 
-
 </mapper>

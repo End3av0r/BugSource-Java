@@ -46,4 +46,16 @@
         SELECT * FROM tag WHERE is_deleted = 0 ORDER BY created_time DESC
     </select>
 
+    <select id="countVulnByTag" resultType="map">
+        SELECT
+            t.tag_name as tag,
+            COUNT(vtr.vuln_id) as count
+        FROM tag t
+        LEFT JOIN vulnerability_tag_relation vtr ON t.id = vtr.tag_id
+        WHERE t.is_deleted = 0
+        GROUP BY t.tag_name
+        HAVING COUNT(vtr.vuln_id) > 0
+        ORDER BY count DESC
+    </select>
+
 </mapper>

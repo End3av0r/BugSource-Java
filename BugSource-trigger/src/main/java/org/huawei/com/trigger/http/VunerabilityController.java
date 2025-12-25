@@ -79,15 +79,19 @@ public class VunerabilityController implements IVunerabilityInfo {
         }
         Date startDate = requestDTO.getStartDate();
         Date endDate = requestDTO.getEndDate();
+        List<String> tags = requestDTO.getTags();
+        List<String> hazardLevels = requestDTO.getHazardLevels();
         try {
             VulnerabilityEntity vulnReq = new VulnerabilityEntity();
             BeanUtils.copyProperties(requestDTO, vulnReq);
             log.info(vulnReq.getCnTitle());
             log.info("CNVD ID: {}", vulnReq.getCnvdId());
             log.info("CVE ID: {}", vulnReq.getCveId());
+            log.info("Tags: {}", tags);
+            log.info("Hazard Levels: {}", hazardLevels);
 
             VulnerabilityQueryResponse responseData = vunerabilityService.queryVulnByInfo(vulnReq, startDate, endDate,
-                    limit, offset);
+                    tags, hazardLevels, limit, offset);
             List<VulnerabilityAggregate> vulnerabilityAggregates = responseData.getAggregateList();
             Map<String, Object> resData = new HashMap<>();
             List<VulnerabilityInfoResponseDTO> res = new ArrayList<>();
@@ -341,6 +345,48 @@ public class VunerabilityController implements IVunerabilityInfo {
         }
     }
 
+    /**
+     * 各威胁程度漏洞数量统计
+     */
+    @GetMapping("/hazard_level_count")
+    public Response<List<Map<String, Object>>> getHazardLevelCount() {
+        try {
+            List<Map<String, Object>> result = vunerabilityService.countVulnByHazardLevel();
+            return Response.<List<Map<String, Object>>>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(result)
+                    .build();
+        } catch (Exception e) {
+            log.error("getHazardLevelCount error:{}", e.getMessage(), e);
+            return Response.<List<Map<String, Object>>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    /**
+     * 各标签漏洞数量统计
+     */
+    @GetMapping("/tag_count")
+    public Response<List<Map<String, Object>>> getTagCount() {
+        try {
+            List<Map<String, Object>> result = vunerabilityService.countVulnByTag();
+            return Response.<List<Map<String, Object>>>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(result)
+                    .build();
+        } catch (Exception e) {
+            log.error("getTagCount error:{}", e.getMessage(), e);
+            return Response.<List<Map<String, Object>>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
     @Override
     @PostMapping("/upload_markdown")
     public Response<VulnerabilityInfoResponseDTO> uploadMarkdown(@RequestBody UploadMarkdownDTO dto) {
@@ -363,6 +409,57 @@ public class VunerabilityController implements IVunerabilityInfo {
                     .build();
         } catch (Exception e) {
             log.error("uploadMarkdown error:{}", e.getMessage(), e);
+            return Response.<VulnerabilityInfoResponseDTO>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @Override
+    @PostMapping("/parse_markdown")
+    public Response<VulnerabilityInfoResponseDTO> parseMarkdownOnly(@RequestBody UploadMarkdownDTO dto) {
+        try {
+            String markdown = dto.getMarkdown();
+            VulnerabilityEntity entity = vunerabilityService.parseMarkdown(markdown);
+            VulnerabilityInfoResponseDTO resp = new VulnerabilityInfoResponseDTO();
+            BeanUtils.copyProperties(entity, resp);
+            log.info("Markdown解析成功，未保存到数据库");
+            return Response.<VulnerabilityInfoResponseDTO>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(resp)
+                    .build();
+        } catch (Exception e) {
+            log.error("parseMarkdownOnly error:{}", e.getMessage(), e);
+            return Response.<VulnerabilityInfoResponseDTO>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @Override
+    @PostMapping("/save_vulnerability")
+    public Response<VulnerabilityInfoResponseDTO> saveVulnerability(@RequestBody VulnerabilityInfoResponseDTO dto) {
+        try {
+            VulnerabilityEntity entity = new VulnerabilityEntity();
+            BeanUtils.copyProperties(dto, entity);
+            int inserted = vunerabilityService.createVulnerability(entity);
+            if (inserted > 0) {
+                log.info("漏洞信息保存成功: {}", dto.getCnTitle());
+                return Response.<VulnerabilityInfoResponseDTO>builder()
+                        .code(ResponseCode.SUCCESS.getCode())
+                        .info("保存成功")
+                        .data(dto)
+                        .build();
+            }
+            return Response.<VulnerabilityInfoResponseDTO>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info("保存失败")
+                    .build();
+        } catch (Exception e) {
+            log.error("saveVulnerability error:{}", e.getMessage(), e);
             return Response.<VulnerabilityInfoResponseDTO>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
