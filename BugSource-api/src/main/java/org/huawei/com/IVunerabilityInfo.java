@@ -23,9 +23,20 @@ public interface IVunerabilityInfo {
 
     /**
      * 查询所有不重复的标签
+     * 
      * @return 所有标签列表
      */
     Response<List<String>> queryAllDistinctTags();
+
+    /**
+     * 根据标签查询漏洞列表
+     * 
+     * @param tag    标签名称
+     * @param offset 偏移量
+     * @param limit  限制数量
+     * @return 漏洞列表
+     */
+    Response<List<VulnerabilityInfoResponseDTO>> queryVulnsByTag(String tag, int offset, int limit);
 
     Response<VulnerabilityInfoResponseDTO> queryVulnByName(int id);
 

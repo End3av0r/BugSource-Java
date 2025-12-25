@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.huawei.com.infrastructure.dao.ITagDao">
+    <resultMap id="tagMap" type="org.huawei.com.infrastructure.dao.po.Tag">
+        <id column="id" property="id"/>
+        <result column="tag_name" property="tagName"/>
+        <result column="description" property="description"/>
+        <result column="is_deleted" property="isDeleted"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_time" property="updatedTime"/>
+    </resultMap>
+
+    <insert id="insertTag" parameterType="org.huawei.com.infrastructure.dao.po.Tag" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tag (tag_name, description, is_deleted, created_time, updated_time)
+        VALUES (#{tagName}, #{description}, 0, NOW(), NOW())
+    </insert>
+
+    <update id="updateTag" parameterType="org.huawei.com.infrastructure.dao.po.Tag">
+        UPDATE tag
+        SET tag_name = #{tagName},
+            description = #{description},
+            updated_time = NOW()
+        WHERE id = #{id} AND is_deleted = 0
+    </update>
+
+    <update id="deleteTag" parameterType="int">
+        UPDATE tag
+        SET is_deleted = 1,
+            updated_time = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <select id="queryTagById" parameterType="int" resultMap="tagMap">
+        SELECT * FROM tag WHERE id = #{id}
+    </select>
+
+    <select id="queryTagByName" parameterType="string" resultMap="tagMap">
+        SELECT * FROM tag WHERE tag_name = #{tagName} AND is_deleted = 0
+    </select>
+
+    <select id="queryAllTags" resultMap="tagMap">
+        SELECT * FROM tag ORDER BY created_time DESC
+    </select>
+
+    <select id="queryActiveTagsOnly" resultMap="tagMap">
+        SELECT * FROM tag WHERE is_deleted = 0 ORDER BY created_time DESC
+    </select>
+
+</mapper>

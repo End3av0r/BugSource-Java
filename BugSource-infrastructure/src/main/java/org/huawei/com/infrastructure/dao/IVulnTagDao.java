@@ -22,7 +22,16 @@ public interface IVulnTagDao {
 
     /**
      * 查询所有不重复的标签
+     * 
      * @return 所有标签列表
      */
     List<String> queryAllDistinctTags();
+
+    /**
+     * 根据标签查询漏洞ID列表
+     * 
+     * @param tag 标签名称
+     * @return 漏洞ID列表
+     */
+    List<Long> queryVulnIdsByTag(String tag);
 }

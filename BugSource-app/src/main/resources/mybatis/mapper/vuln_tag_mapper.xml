@@ -33,5 +33,9 @@
         SELECT DISTINCT tag FROM vuln_tag ORDER BY tag ASC
     </select>
 
+    <select id="queryVulnIdsByTag" parameterType="string" resultType="long">
+        SELECT vuln_id FROM vuln_tag WHERE tag = #{tag} ORDER BY vuln_id ASC
+    </select>
+
 
 </mapper>

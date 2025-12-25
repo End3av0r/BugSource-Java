@@ -11,12 +11,15 @@ import org.huawei.com.domain.vulnerability.model.aggregate.VulnerabilityAggregat
 import org.huawei.com.domain.vulnerability.model.aggregate.VulnerabilityQueryResponse;
 import org.huawei.com.domain.vulnerability.model.entity.VulnerabilityEntity;
 import org.huawei.com.domain.vulnerability.service.IVunerabilityService;
+import org.huawei.com.domain.tag.service.ITagService;
+import org.huawei.com.domain.tag.model.entity.TagEntity;
 import org.huawei.com.types.enums.ResponseCode;
 import org.huawei.com.types.model.Response;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController()
@@ -26,6 +29,9 @@ public class VunerabilityController implements IVunerabilityInfo {
 
     @Resource
     private IVunerabilityService vunerabilityService;
+
+    @Resource
+    private ITagService tagService;
 
     @Override
     @RequestMapping(value = "latest", method = RequestMethod.GET)
@@ -206,7 +212,10 @@ public class VunerabilityController implements IVunerabilityInfo {
     @RequestMapping(value = "/all_tags", method = RequestMethod.GET)
     public Response<List<String>> queryAllDistinctTags() {
         try {
-            List<String> allTags = vunerabilityService.queryAllDistinctTags();
+            List<TagEntity> tagEntities = tagService.queryActiveTagsOnly();
+            List<String> allTags = tagEntities.stream()
+                    .map(TagEntity::getTagName)
+                    .collect(Collectors.toList());
             log.info("查询所有标签成功，共{}个标签", allTags.size());
             return Response.<List<String>>builder()
                     .code(ResponseCode.SUCCESS.getCode())
@@ -216,6 +225,33 @@ public class VunerabilityController implements IVunerabilityInfo {
         } catch (Exception e) {
             log.error("查询所有标签失败:{}", e.getMessage(), e);
             return Response.<List<String>>builder()
+                    .code(ResponseCode.UN_ERROR.getCode())
+                    .info(ResponseCode.UN_ERROR.getInfo())
+                    .build();
+        }
+    }
+
+    @Override
+    @RequestMapping(value = "/query_by_tag", method = RequestMethod.GET)
+    public Response<List<VulnerabilityInfoResponseDTO>> queryVulnsByTag(@RequestParam String tag,
+            @RequestParam(defaultValue = "0") int offset,
+            @RequestParam(defaultValue = "100") int limit) {
+        try {
+            List<VulnerabilityAggregate> vulnerabilityAggregates = vunerabilityService.queryVulnsByTag(tag, offset,
+                    limit);
+            List<VulnerabilityInfoResponseDTO> vulnerabilityInfoResponseDTOs = vulnerabilityAggregates.stream()
+                    .map(this::convertAggregateToResponseDTO)
+                    .collect(Collectors.toList());
+
+            log.info("根据标签查询漏洞成功，标签：{}，返回{}条记录", tag, vulnerabilityInfoResponseDTOs.size());
+            return Response.<List<VulnerabilityInfoResponseDTO>>builder()
+                    .code(ResponseCode.SUCCESS.getCode())
+                    .info(ResponseCode.SUCCESS.getInfo())
+                    .data(vulnerabilityInfoResponseDTOs)
+                    .build();
+        } catch (Exception e) {
+            log.error("根据标签查询漏洞失败:{}", e.getMessage(), e);
+            return Response.<List<VulnerabilityInfoResponseDTO>>builder()
                     .code(ResponseCode.UN_ERROR.getCode())
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
@@ -332,6 +368,16 @@ public class VunerabilityController implements IVunerabilityInfo {
                     .info(ResponseCode.UN_ERROR.getInfo())
                     .build();
         }
+    }
+
+    /**
+     * 将VulnerabilityAggregate转换为VulnerabilityInfoResponseDTO
+     */
+    private VulnerabilityInfoResponseDTO convertAggregateToResponseDTO(VulnerabilityAggregate aggregate) {
+        VulnerabilityInfoResponseDTO responseDTO = new VulnerabilityInfoResponseDTO();
+        BeanUtils.copyProperties(aggregate.getVulnerabilityEntity(), responseDTO);
+        responseDTO.setTag(aggregate.getTags());
+        return responseDTO;
     }
 
     // 解析逻辑已迁移到 Spring AI 服务
